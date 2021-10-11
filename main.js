@@ -28,7 +28,7 @@ inputs[0].addEventListener("keyup", function () {
         let smallTagCard = document.querySelector('#card1');
         smallTagCard.style.background = "red";
         smallTagCard.style.display = 'block';
-        smallTagCard.innerHTML = "El numero no es correcto!";
+        smallTagCard.innerHTML = "El numero no es correcto! debe empezar en 4 y tener 16 digitos";
 
     }
 
