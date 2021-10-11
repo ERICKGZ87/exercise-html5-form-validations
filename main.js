@@ -137,20 +137,21 @@ inputs[4].addEventListener("keyup", function () {
 inputs[5].addEventListener("keyup", function () {
     if (inputs[5].value !== "" && rgFirtsName.test(inputs[5].value)) {
 
-        let CityEstilo = document.querySelector('#city')
-        CityEstilo.style.background = "green"
-        let smallTagCity = document.querySelector('#city1');
-        smallTagCity.style.background = "green";
-        smallTagCity.style.display = 'block';
-        smallTagCity.innerHTML = "Has ingresado una ciudad correcta";
+        let CityEstilo = document.querySelector('#city');
+        CityEstilo.style.background = "green";
+        let smallTagCity1 = document.querySelector('#city1');
+        smallTagCity1.style.background = "green";
+        smallTagCity1.style.display = 'block';
+        smallTagCity1.innerHTML = "Has ingresado una ciudad correcta";
     }
     else {
         let CityEstilo = document.querySelector('#city')
-        CityEstilo.style.background = "red"
-        let smallTagCity = document.querySelector('#city');
-        smallTagCity.style.background = "red";
-        smallTagCity.style.display = 'block';
-        smallTagCity.innerHTML = "La ciudad ingresada no es Correcta";
+        CityEstilo.style.background = "red";
+
+        let smallTagCity2 = document.querySelector('#city1');
+        smallTagCity2.style.background = "red";
+        smallTagCity2.style.display = 'block';
+        smallTagCity2.innerHTML = "La ciudad ingresada no es Correcta";
       
     }
 
@@ -176,7 +177,7 @@ seleciones[0].addEventListener("change", function () {
         let smallTagstate = document.querySelector('#inputState1');
         smallTagstate.style.background = "red";
         smallTagstate.style.display = 'block';
-        smallTagstate.innerHTML = "La ciudad ingresada no es Correcta";
+        smallTagstate.innerHTML = "debes agregar un pais";
       
     }
 
@@ -198,9 +199,11 @@ formCard.addEventListener("submit", function (evento) {
 
     if (validarCard == true && validarCvc == true && validarAmount==true && validarFirtsName==true && validarLastsName== true && validarCity== true && validarState==true)
     {
-
+          
         evento.target.submit();
                 alert("los datos se han enviado correctamente!")
+
+                
     }
 
     else if (validarState== false) {
@@ -210,6 +213,11 @@ formCard.addEventListener("submit", function (evento) {
        smallTag.style.background = "red";
        smallTag.style.display = 'block';
        smallTag.innerHTML = "Debes seleccionar un pais";
+
+       let msjConfirm= document.querySelector('#mensajeConfirm');
+       msjConfirm.style.display="block"
+       let msjTexto= document.querySelector('#msj');
+       msjTexto.innerHTML="Debes rellenar todos los campos"
 
        for (let i =0;i<=inputs.length;i++){
            let smallmsj=document.querySelectorAll('small');
@@ -221,29 +229,7 @@ formCard.addEventListener("submit", function (evento) {
        
 
       
-    } 
-    else if (validarCvc == false) {
-        //let cvcestilo = document.querySelector('#cvc')
-        //cvcestilo.style.background = "red"
-       // let smallTag2 = document.querySelector('#cvc1');
-       // smallTag2.style.background = "red";
-       // smallTag2.style.display = 'block';
-       // smallTag2.innerHTML = "Debe ingresar un numero de cvc valido";
-
     }
-
-    else if(validarAmount==false)
-    {
-        //let amountestilo = document.querySelector('#Amount')
-       // amountestilo.style.background = "red"
-        //let smallTag3= document.querySelector('#Amount1');
-       // smallTag3.style.background = "red";
-       // smallTag3.style.display = 'block';
-       // smallTag3.innerHTML = "Debe ingresar un cantidad de dinero valida";
-
-
-    }
-  
 
 });
 
