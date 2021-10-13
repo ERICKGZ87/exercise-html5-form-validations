@@ -198,6 +198,8 @@ formCard.addEventListener("submit", function (evento) {
                 
     }
 
+  
+
     else if (validarState== false) {
        let Statestilo = document.querySelector('#inputState')
        //Statestilo.style.background = "red"
@@ -205,6 +207,8 @@ formCard.addEventListener("submit", function (evento) {
        //smallTag.style.background = "red";
        smallTag.style.display = 'block';
        smallTag.innerHTML = "Debes seleccionar un pais";
+
+       
 
        let msjConfirm= document.querySelector('#mensajeConfirm');
        msjConfirm.style.display="block"
@@ -216,15 +220,14 @@ formCard.addEventListener("submit", function (evento) {
         if (inputs[i].value==""){
             let smallmsj=document.querySelectorAll('small');
             smallmsj[i].innerHTML="El campo esta vacio"
-            smallmsj[i].style.background="red"
+            //smallmsj[i].style.background="red"
 
         }
          
 
        }
 
-       
-
+    
       
     }
 
