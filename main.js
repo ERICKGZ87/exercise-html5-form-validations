@@ -16,19 +16,19 @@ let rgFirtsName=/^[a-zA-ZÀ-ÿ\s]{1,40}$/
 inputs[0].addEventListener("keyup", function () {
     if (inputs[0].value !== "" && rgCard.test(inputs[0].value)) {
         let carestilo = document.querySelector('#Card')
-        carestilo.style.background = "green"
+        carestilo.style.background = "#008f39 "
         let smallTagCard = document.querySelector('#card1');
-        smallTagCard.style.background = "green";
-        smallTagCard.style.display = 'block';
-        smallTagCard.innerHTML = "El numero es correcto!";
+        //smallTagCard.style.background = "green";
+        //smallTagCard.style.display = 'block';
+        smallTagCard.innerHTML = "<img src='./tilde.png' alt='' width='30px' height='30px'>";
     }
     else {
         let cardestilo = document.querySelector('#Card')
-        cardestilo.style.background = "red"
+        cardestilo.style.background = "#e62e1b"
         let smallTagCard = document.querySelector('#card1');
-        smallTagCard.style.background = "red";
+       // smallTagCard.style.background = "red";
         smallTagCard.style.display = 'block';
-        smallTagCard.innerHTML = "El numero no es correcto! debe empezar en 4 y tener 16 digitos";
+        smallTagCard.innerHTML = "<img src='./error.png' alt='' width='30px' height='30px'>";
 
     }
 
@@ -40,19 +40,19 @@ inputs[0].addEventListener("keyup", function () {
 inputs[1].addEventListener("keyup", function () {
     if (inputs[1].value !== "" && rgCvc.test(inputs[1].value)) {
         let cvcestilo = document.querySelector('#cvc')
-        cvcestilo.style.background = "green"
+        cvcestilo.style.background = "#008f39 "
         let smallTagCvc = document.querySelector('#cvc1');
-        smallTagCvc.style.background = "green";
-        smallTagCvc.style.display = 'block';
-        smallTagCvc.innerHTML = "El numero de CVC es correcto!";
+        //smallTagCvc.style.background = "green";
+        //smallTagCvc.style.display = 'block';
+        smallTagCvc.innerHTML = "<img src='./tilde.png' alt='' width='30px' height='30px'>";
     }
     else {
         let cvcestilo = document.querySelector('#cvc')
-        cvcestilo.style.background = "red"
+        cvcestilo.style.background = "#e62e1b"
         let smallTagCvc = document.querySelector('#cvc1');
-        smallTagCvc.style.background = "red";
+       // smallTagCvc.style.background = "red";
         smallTagCvc.style.display = 'block';
-        smallTagCvc.innerHTML = "El numero no es correcto!";
+        smallTagCvc.innerHTML = "<img src='./error.png' alt='' width='30px' height='30px'>";
       
     }
 
@@ -64,19 +64,19 @@ inputs[2].addEventListener("keyup", function () {
     if (inputs[2].value !== "" && rgAmount.test(inputs[2].value)) {
 
         let Amountestilo = document.querySelector('#Amount')
-        Amountestilo.style.background = "green"
+        Amountestilo.style.background = "#008f39 "
         let smallTagAmount = document.querySelector('#Amount1');
-        smallTagAmount.style.background = "green";
-        smallTagAmount.style.display = 'block';
-        smallTagAmount.innerHTML = "El numero es correcto!";
+        //smallTagAmount.style.background = "green";
+        //smallTagAmount.style.display = 'block';
+        smallTagAmount.innerHTML = "<img src='./tilde.png' alt='' width='30px' height='30px'>";
     }
     else {
         let Amountestilo  = document.querySelector('#Amount')
-        Amountestilo.style.background = "red"
+       Amountestilo.style.background = "#e62e1b"
         let smallTagAmount = document.querySelector('#Amount1');
-        smallTagAmount.style.background = "red";
+        //smallTagAmount.style.background = "red";
         smallTagAmount.style.display = 'block';
-        smallTagAmount.innerHTML = "El numero no es correcto!";
+        smallTagAmount.innerHTML = "<img src='./error.png' alt='' width='30px' height='30px'>";
       
     }
 
@@ -88,19 +88,19 @@ inputs[3].addEventListener("keyup", function () {
     if (inputs[3].value !== "" && rgFirtsName.test(inputs[3].value)) {
 
         let FirtsNameEstilo = document.querySelector('#FirtsName')
-        FirtsNameEstilo.style.background = "green"
+        FirtsNameEstilo.style.background = "#008f39 "
         let smallTagFirtsName = document.querySelector('#FirtsName1');
-        smallTagFirtsName.style.background = "green";
-        smallTagFirtsName.style.display = 'block';
-        smallTagFirtsName.innerHTML = "Has ingresado un nombre Correcto";
+        //smallTagFirtsName.style.background = "green";
+        //smallTagFirtsName.style.display = 'block';
+        smallTagFirtsName.innerHTML = "<img src='./tilde.png' alt='' width='30px' height='30px'>";
     }
     else {
         let FirtsNameEstilo  = document.querySelector('#FirtsName')
-        FirtsNameEstilo.style.background = "red"
+        FirtsNameEstilo.style.background = "#e62e1b"
         let smallTagFirtsName = document.querySelector('#FirtsName1');
-        smallTagFirtsName.style.background = "red";
-        smallTagFirtsName.style.display = 'block';
-        smallTagFirtsName.innerHTML = "El nombre no es correcto!";
+        //smallTagFirtsName.style.background = "red";
+        //smallTagFirtsName.style.display = 'block';
+        smallTagFirtsName.innerHTML = "<img src='./error.png' alt='' width='30px' height='30px'>";
       
     }
 
@@ -113,19 +113,19 @@ inputs[4].addEventListener("keyup", function () {
     if (inputs[4].value !== "" && rgFirtsName.test(inputs[4].value)) {
 
         let LastNameEstilo = document.querySelector('#LastName')
-        LastNameEstilo.style.background = "green"
+        LastNameEstilo.style.background = "#008f39 "
         let smallTagLastName = document.querySelector('#LastName1');
-        smallTagLastName.style.background = "green";
-        smallTagLastName.style.display = 'block';
-        smallTagLastName.innerHTML = "Has ingresado un apellido Correcto";
+        //smallTagLastName.style.background = "green";
+       // smallTagLastName.style.display = 'block';
+        smallTagLastName.innerHTML = "<img src='./tilde.png' alt='' width='30px' height='30px'>";
     }
     else {
         let LastNameEstilo  = document.querySelector('#LastName')
-        LastNameEstilo.style.background = "red"
+        LastNameEstilo.style.background = "#e62e1b"
         let smallTagLastName = document.querySelector('#LastName1');
-        smallTagLastName.style.background = "red";
-        smallTagLastName.style.display = 'block';
-        smallTagLastName.innerHTML = "El apellido no es correcto!";
+       // smallTagLastName.style.background = "red";
+        //smallTagLastName.style.display = 'block';
+        smallTagLastName.innerHTML = "<img src='./error.png' alt='' width='30px' height='30px'>";
       
     }
 
@@ -138,20 +138,20 @@ inputs[5].addEventListener("keyup", function () {
     if (inputs[5].value !== "" && rgFirtsName.test(inputs[5].value)) {
 
         let CityEstilo = document.querySelector('#city');
-        CityEstilo.style.background = "green";
+        CityEstilo.style.background = "#008f39 ";
         let smallTagCity1 = document.querySelector('#city1');
-        smallTagCity1.style.background = "green";
-        smallTagCity1.style.display = 'block';
-        smallTagCity1.innerHTML = "Has ingresado una ciudad correcta";
+       // smallTagCity1.style.background = "green";
+       // smallTagCity1.style.display = 'block';
+        smallTagCity1.innerHTML = "<img src='./tilde.png' alt='' width='30px' height='30px'>";
     }
     else {
         let CityEstilo = document.querySelector('#city')
-        CityEstilo.style.background = "red";
+        CityEstilo.style.background = "#e62e1b";
 
         let smallTagCity2 = document.querySelector('#city1');
-        smallTagCity2.style.background = "red";
-        smallTagCity2.style.display = 'block';
-        smallTagCity2.innerHTML = "La ciudad ingresada no es Correcta";
+        //smallTagCity2.style.background = "red";
+        //smallTagCity2.style.display = 'block';
+        smallTagCity2.innerHTML = "<img src='./error.png' alt='' width='30px' height='30px'>";
       
     }
 
@@ -165,21 +165,13 @@ seleciones[0].addEventListener("change", function () {
     if (seleciones[0].value !== "") {
 
         let stateEstilo = document.querySelector('#inputState')
-        stateEstilo.style.background = "green"
+        stateEstilo.style.background = "#008f39 "
         let smallTagstate = document.querySelector('#inputState1');
-        smallTagstate.style.background = "green";
-        smallTagstate.style.display = 'block';
-        smallTagstate.innerHTML = "Has agregados un pais";
+        //smallTagstate.style.background = "green";
+        //smallTagstate.style.display = 'block';
+        smallTagstate.innerHTML = "<img src='./tilde.png' alt='' width='30px' height='30px'>";
     }
-    else {
-        let stateEstilo = document.querySelector('#inputState')
-        stateEstilo.style.background = "red"
-        let smallTagstate = document.querySelector('#inputState1');
-        smallTagstate.style.background = "red";
-        smallTagstate.style.display = 'block';
-        smallTagstate.innerHTML = "debes agregar un pais";
-      
-    }
+  
 
 });
 
@@ -210,7 +202,7 @@ formCard.addEventListener("submit", function (evento) {
        let Statestilo = document.querySelector('#inputState')
        //Statestilo.style.background = "red"
         let smallTag = document.querySelector('#inputState1');
-       smallTag.style.background = "red";
+       //smallTag.style.background = "red";
        smallTag.style.display = 'block';
        smallTag.innerHTML = "Debes seleccionar un pais";
 
@@ -220,9 +212,14 @@ formCard.addEventListener("submit", function (evento) {
        msjTexto.innerHTML="Debes rellenar todos los campos"
 
        for (let i =0;i<=inputs.length;i++){
-           let smallmsj=document.querySelectorAll('small');
-          smallmsj[i].innerHTML="El campo esta vacio"
-          smallmsj[i].style.background="red"
+
+        if (inputs[i].value==""){
+            let smallmsj=document.querySelectorAll('small');
+            smallmsj[i].innerHTML="El campo esta vacio"
+            smallmsj[i].style.background="red"
+
+        }
+         
 
        }
 
