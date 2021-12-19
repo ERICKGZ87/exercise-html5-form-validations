@@ -43,12 +43,12 @@
             <div class="row" style="align-items: flex-start;">
 
                 <div class="col-md-4">
-                    <!-- columna del imput card -->
+                    <!-- columna del input card -->
                     <div class="form-row">
-                        <div class="col-md-4 mb-1">
+                        <div class="col-md-4 mb-1 cardDiv">
                             <label>Card #</label>
-                            <input type="text" class="form-control" id="Card" name="Card" style="width: 300px;">
-                            <small id="card1"></small>
+                            <input type="number" class="form-control" placeholder="solo ingresar 12 caracteres" id="Card" name="Card" style="width: 300px;">
+                            <p class="imgValidacion0"></p>
                         </div>
                 
                 
@@ -59,9 +59,10 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
                             <label>CVC #</label>
-                            <input type="text" class="form-control" id="cvc" name="cvc" style="width: 300px;">
-                            <small id="cvc1"></small>
+                            <input type="number" class="form-control" id="cvc" name="cvc" style="width: 300px;">
+                            <p class="imgValidacion1"></p>
                         </div>
+
                     </div>
                 </div>
 
@@ -73,8 +74,9 @@
                         <div class="col-md-4">
                             $
                             <label>Amount</label>
-                            <input type="text" class="form-control" id="Amount" name="Amount" style="width: 250px;">
-                            <small id="Amount1"></small>
+                            <input type="number" class="form-control" id="Amount" name="Amount" style="width: 250px;">
+                           
+                            <p class="imgValidacion2"></p>
                         </div>
                     </div>
 
@@ -91,7 +93,8 @@
                         <div class="col-md-4 mb-3">
                             <label>Firts Name</label>
                             <input type="text" class="form-control" id="FirtsName" name="FirtsName" style="width: 300px;">
-                            <small id="FirtsName1"></small>
+                            <p class="imgValidacion3"></p>
+
                         </div>
                     </div>
 
@@ -104,7 +107,7 @@
                         <div class="col-md-4 mb-3">
                             <label>Last Name</label>
                             <input type="text" class="form-control" id="LastName" name="LastName" style="width: 300px;">
-                            <small id="LastName1"></small>
+                            <p class="imgValidacion4"></p>
                         </div>
                     </div>
 
@@ -121,8 +124,9 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
                             <label>City</label>
-                            <input type="text" class="form-control" id="city" name="city">
-                            <small id="city1"></small>
+                            <input type="text" class="form-control" id="city" name="city"
+                            style="width: 300px;">
+                            <p class="imgValidacion5"></p>
                         </div>
                     </div>
 
@@ -133,13 +137,14 @@
 
                     <div class="form-group col-md-6">
                         <label for="inputState">State</label>
-                        <select id="inputState" class="form-control" name="inputState">
+                        <select id="inputState" class="form-control" name="inputState" id="inputState">
                             <option selected></option>
                             <option>chile</option>
                             <option>españa</option>
                             <option>Venezuela</option>
+                           
                         </select>
-                        <small id="inputState1"></small>
+                        <p class="imgValidacion6"></p>
                     </div>
 
 
@@ -210,14 +215,18 @@
             </div>
 
             <div class="row border border-1">
-                <div class="col-md-7">
+                <div class="col-md-5">
 
                 </div>
 
-                <div class="col-md-5 ">
+                <div class="col-md-7 ">
                     <button type="reset" class="btn btn-secondary" style="margin-bottom: 5px;">Cancel</button>
-                    <button id="boton" class="btn btn-primary" style="margin-bottom: 5px;" >Send</button>
+                    <button id="boton" class="btn btn-primary" style="margin-bottom: 5px;" >Send</button>   
+                   
+                    <p class="imgValidacion50"></p>
+                  
                 </div>
+                
         </form>
     </div>
     </div>

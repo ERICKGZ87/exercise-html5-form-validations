@@ -1,235 +1,228 @@
-var formCard = document.getElementById('Carddata');
-const inputs = document.querySelectorAll('#Carddata input');
-var seleciones =document.querySelectorAll('#Carddata select');
-var areaMensaje= document.querySelectorAll('textarea');
+// variables
+const formCard = document.querySelector("#Carddata");
 
+// campos
+const card = document.querySelector("#Card");
+const Cvc = document.querySelector("#cvc");
+const Amount = document.querySelector("#Amount");
+const FirtsName = document.querySelector("#FirtsName");
+const LastName = document.querySelector("#LastName");
+const city = document.querySelector("#city");
+const inputState = document.querySelector("#inputState");
+const postalcode = document.querySelector("#postalcode");
 
-let rgCard = /^(?:4\d([\- ])?\d{6}\1\d{5}|(?:4\d{3}|5[1-5]\d{2}|6011)([\- ])?\d{4}\2\d{4}\2\d{4})$/;
+/// expresiones regulares
+let rgCard =
+  /^(?:4\d([\- ])?\d{6}\1\d{5}|(?:4\d{3}|5[1-5]\d{2}|6011)([\- ])?\d{4}\2\d{4}\2\d{4})$/;
 //let rgCard = /[0-9]{6,12}/;
-let rgCvc =/^\d{4,4}$/
-let rgAmount= /^[+]?([1-9][0-9]*(?:[\.][0-9]*)?|0*\.0*[1-9][0-9]*)(?:[eE][+-][0-9]+)?$/;
-let rgFirtsName=/^[a-zA-ZÀ-ÿ\s]{1,40}$/
+let rgCvc = /^\d{4,4}$/;
+let rgAmount =
+  /^[+]?([1-9][0-9]*(?:[\.][0-9]*)?|0*\.0*[1-9][0-9]*)(?:[eE][+-][0-9]+)?$/;
 
-///[0-9]{1,16}/;
+let rgFirtsName = /^[a-zA-ZÀ-ÿ\s]{1,40}$/;
 
-// evento keyup del card
-inputs[0].addEventListener("keyup", function () {
-    if (inputs[0].value !== "" && rgCard.test(inputs[0].value)) {
-        let carestilo = document.querySelector('#Card')
-        carestilo.style.background = "#008f39 "
-        let smallTagCard = document.querySelector('#card1');
-        //smallTagCard.style.background = "green";
-        //smallTagCard.style.display = 'block';
-        smallTagCard.innerHTML = "<img src='./tilde.png' alt='' width='30px' height='30px'>";
+// funciones
+ListenerEventos();
+
+function ListenerEventos() {
+  card.addEventListener("blur", ValidarCampos);
+  Cvc.addEventListener("blur", ValidarCampos);
+  Amount.addEventListener("blur", ValidarCampos);
+  FirtsName.addEventListener("blur", ValidarCampos);
+  LastName.addEventListener("blur", ValidarCampos);
+  city.addEventListener("blur", ValidarCampos);
+  formCard.addEventListener("submit", EnviarForm)
+  inputState.addEventListener("blur",ValidarCampos)
+  document.addEventListener("DOMContentLoaded", IniciarAPP);
+}
+
+function IniciarAPP(e) {}
+
+function ValidarCampos(e) {
+
+  // card
+  if (card.value == "" && e.target.id === "Card") {
+    MensajeError("El campo no puede estar vacio", 0);
+    card.classList.remove("correcto");
+  }
+  if (card.value !== "" && card.id === "Card") {
+    if (rgCard.test(card.value)) {
+      card.classList.remove("error");
+      card.classList.add("correcto");
+      MensajeBien("Bien", 0);
+    } else {
+      card.classList.remove("correcto");
+      card.classList.add("error");
+      MensajeError("La tarjeta es invalida", 0);
     }
-    else {
-        let cardestilo = document.querySelector('#Card')
-        cardestilo.style.background = "#e62e1b"
-        let smallTagCard = document.querySelector('#card1');
-       // smallTagCard.style.background = "red";
-        smallTagCard.style.display = 'block';
-        smallTagCard.innerHTML = "<img src='./error.png' alt='' width='30px' height='30px'>";
+  }
+  //cvc
+  if (Cvc.value == "" && e.target.id === "cvc") {
+    MensajeError("El campo no puede estar vacio", 1);
+    Cvc.classList.remove("correcto");
+  }
 
+  if (Cvc.value !== "" && Cvc.id === "cvc") {
+    if (rgCvc.test(Cvc.value)) {
+      Cvc.classList.remove("error");
+      Cvc.classList.add("correcto");
+      MensajeBien("Bien", 1);
+    } else {
+      Cvc.classList.remove("correcto");
+      Cvc.classList.add("error");
+      MensajeError("Debes ingresar 4 numeros", 1);
     }
+  }
+  //amount
+  if (Amount.value == "" && e.target.id === "Amount") {
+    // si esta vacio
 
-});
+    MensajeError("El campo no puede estar vacio", 2);
+    Amount.classList.remove("correcto");
+  }
 
-//cierre evento del card keyup
+  if (Amount.value !== "" && Amount.id === "Amount") {
+    // si es diferente a vacio
 
-//evento keyup del cvc
-inputs[1].addEventListener("keyup", function () {
-    if (inputs[1].value !== "" && rgCvc.test(inputs[1].value)) {
-        let cvcestilo = document.querySelector('#cvc')
-        cvcestilo.style.background = "#008f39 "
-        let smallTagCvc = document.querySelector('#cvc1');
-        //smallTagCvc.style.background = "green";
-        //smallTagCvc.style.display = 'block';
-        smallTagCvc.innerHTML = "<img src='./tilde.png' alt='' width='30px' height='30px'>";
+    if (Amount.value > 0 && rgAmount.test(Amount.value)) {
+      Amount.classList.remove("error");
+      Amount.classList.add("correcto");
+      MensajeBien("Bien", 2);
+    } else {
+      Amount.classList.remove("correcto");
+      Amount.classList.add("error");
+      MensajeError("Debes ingresar una cantidad minima de 1000$", 2);
     }
-    else {
-        let cvcestilo = document.querySelector('#cvc')
-        cvcestilo.style.background = "#e62e1b"
-        let smallTagCvc = document.querySelector('#cvc1');
-       // smallTagCvc.style.background = "red";
-        smallTagCvc.style.display = 'block';
-        smallTagCvc.innerHTML = "<img src='./error.png' alt='' width='30px' height='30px'>";
-      
+  }
+  // FirtsName
+
+  if (FirtsName.value == "" && e.target.id === "FirtsName") {
+    // si esta vacio
+
+    MensajeError("El campo no puede estar vacio", 3);
+    Amount.classList.remove("correcto");
+  }
+
+  if (FirtsName.value !== "" && FirtsName.id === "FirtsName") {
+    // si es diferente a vacio
+
+    if (rgFirtsName.test(FirtsName.value)) {
+      FirtsName.classList.remove("error");
+      FirtsName.classList.add("correcto");
+      MensajeBien("Bien", 3);
+    } else {
+      FirtsName.classList.remove("correcto");
+      FirtsName.classList.add("error");
+      MensajeError("El nombre es invalido", 3);
     }
+  }
 
-});
-//cierre evento del cvc keyup
+  // LastName
 
-// evento keyup del amount
-inputs[2].addEventListener("keyup", function () {
-    if (inputs[2].value !== "" && rgAmount.test(inputs[2].value)) {
+  if (LastName.value == "" && e.target.id === "LastName") {
+    // si esta vacio
 
-        let Amountestilo = document.querySelector('#Amount')
-        Amountestilo.style.background = "#008f39 "
-        let smallTagAmount = document.querySelector('#Amount1');
-        //smallTagAmount.style.background = "green";
-        //smallTagAmount.style.display = 'block';
-        smallTagAmount.innerHTML = "<img src='./tilde.png' alt='' width='30px' height='30px'>";
+    MensajeError("El campo no puede estar vacio", 4);
+    LastName.classList.remove("correcto");
+  }
+
+  if (LastName.value !== "" && LastName.id === "LastName") {
+    // si es diferente a vacio
+
+    if (rgFirtsName.test(LastName.value)) {
+      LastName.classList.remove("error");
+      LastName.classList.add("correcto");
+      MensajeBien("Bien", 4);
+    } else {
+      LastName.classList.remove("correcto");
+      LastName.classList.add("error");
+      MensajeError("El Apellido es invalido", 4);
     }
-    else {
-        let Amountestilo  = document.querySelector('#Amount')
-       Amountestilo.style.background = "#e62e1b"
-        let smallTagAmount = document.querySelector('#Amount1');
-        //smallTagAmount.style.background = "red";
-        smallTagAmount.style.display = 'block';
-        smallTagAmount.innerHTML = "<img src='./error.png' alt='' width='30px' height='30px'>";
-      
+  }
+  // city
+  if (city.value == "" && e.target.id === "city") {
+    // si esta vacio
+    MensajeError("Debes Agregar una ciudad",5);
+    city.classList.remove("correcto");
+  }
+
+  if (city.value !== "" && city.id === "city") {
+    // si es diferente a vacio
+
+    if (rgFirtsName.test(city.value)) {
+      city.classList.remove("error");
+      city.classList.add("correcto");
+      MensajeBien("Bien", 5);
+    } else {
+      city.classList.remove("correcto");
+      city.classList.add("error");
+      MensajeError("El nombre es invalido",5);
     }
+  }
+  //state
+  if (inputState.value == "" && e.target.id === "inputState") {
+    // si esta vacio
+    MensajeError("Debes seleccionar un pais",6);
+    inputState.classList.remove("correcto");
+  }
 
-});
-//cierre evento del amount keyup
+  if (inputState.value !== "" && e.target.id === "inputState") {
+    // si es diferente a vacio
 
-//evento first name keyup
-inputs[3].addEventListener("keyup", function () {
-    if (inputs[3].value !== "" && rgFirtsName.test(inputs[3].value)) {
+    if (rgFirtsName.test(inputState.value)) {
+      inputState.classList.remove("error");
+      inputState.classList.add("correcto");
+      MensajeBien("Bien", 6);
+    } 
+  }
+}
 
-        let FirtsNameEstilo = document.querySelector('#FirtsName')
-        FirtsNameEstilo.style.background = "#008f39 "
-        let smallTagFirtsName = document.querySelector('#FirtsName1');
-        //smallTagFirtsName.style.background = "green";
-        //smallTagFirtsName.style.display = 'block';
-        smallTagFirtsName.innerHTML = "<img src='./tilde.png' alt='' width='30px' height='30px'>";
-    }
-    else {
-        let FirtsNameEstilo  = document.querySelector('#FirtsName')
-        FirtsNameEstilo.style.background = "#e62e1b"
-        let smallTagFirtsName = document.querySelector('#FirtsName1');
-        //smallTagFirtsName.style.background = "red";
-        //smallTagFirtsName.style.display = 'block';
-        smallTagFirtsName.innerHTML = "<img src='./error.png' alt='' width='30px' height='30px'>";
-      
-    }
+function MensajeBien(mensaje, n) {
+  Pimg = document.querySelector(`.imgValidacion${n}`);
+  Pimg.classList.remove("msjError");
+  Pimg.classList.add("msjBien");
+  Pimg.innerHTML =mensaje + " " +"<img src='./tilde.png' alt='' width='30px' height='30px'></img>";
+}
 
-});
-//cierre evento del firts name keyup
+function MensajeError(mensaje, n) {
+  Pimg = document.querySelector(`.imgValidacion${n}`);
+  Pimg.classList.remove("msjBien");
+  Pimg.classList.add("msjError");
+  Pimg.innerHTML =mensaje + " " +"<img src='./error.png' alt='' width='30px' height='30px'></img>";
+}
+
+function EnviarForm(e){
+e.preventDefault();
+
+const cardValidacion=rgCard.test(card.value);
+const cvcValidation=rgCvc.test(Cvc.value);
+const AmountValidacion=rgAmount.test(Amount.value);
+const FirtsNameValidacion=rgFirtsName.test(FirtsName.value);
+const LastnameValidacion=rgFirtsName.test(LastName.value);
+const cityValidacion=rgFirtsName.test(city.value);
+const InpuStateValidacion=  inputState.value !== "";
 
 
-// evento last name keyup
-inputs[4].addEventListener("keyup", function () {
-    if (inputs[4].value !== "" && rgFirtsName.test(inputs[4].value)) {
-
-        let LastNameEstilo = document.querySelector('#LastName')
-        LastNameEstilo.style.background = "#008f39 "
-        let smallTagLastName = document.querySelector('#LastName1');
-        //smallTagLastName.style.background = "green";
-       // smallTagLastName.style.display = 'block';
-        smallTagLastName.innerHTML = "<img src='./tilde.png' alt='' width='30px' height='30px'>";
-    }
-    else {
-        let LastNameEstilo  = document.querySelector('#LastName')
-        LastNameEstilo.style.background = "#e62e1b"
-        let smallTagLastName = document.querySelector('#LastName1');
-       // smallTagLastName.style.background = "red";
-        //smallTagLastName.style.display = 'block';
-        smallTagLastName.innerHTML = "<img src='./error.png' alt='' width='30px' height='30px'>";
-      
-    }
-
-});
-// cierre evento last name keyup
-
-// evento city keyup
-
-inputs[5].addEventListener("keyup", function () {
-    if (inputs[5].value !== "" && rgFirtsName.test(inputs[5].value)) {
-
-        let CityEstilo = document.querySelector('#city');
-        CityEstilo.style.background = "#008f39 ";
-        let smallTagCity1 = document.querySelector('#city1');
-       // smallTagCity1.style.background = "green";
-       // smallTagCity1.style.display = 'block';
-        smallTagCity1.innerHTML = "<img src='./tilde.png' alt='' width='30px' height='30px'>";
-    }
-    else {
-        let CityEstilo = document.querySelector('#city')
-        CityEstilo.style.background = "#e62e1b";
-
-        let smallTagCity2 = document.querySelector('#city1');
-        //smallTagCity2.style.background = "red";
-        //smallTagCity2.style.display = 'block';
-        smallTagCity2.innerHTML = "<img src='./error.png' alt='' width='30px' height='30px'>";
-      
-    }
-
-});
-
-// cierre evento city keyup
-
-// evento change state 
-
-seleciones[0].addEventListener("change", function () {
-    if (seleciones[0].value !== "") {
-
-        let stateEstilo = document.querySelector('#inputState')
-        stateEstilo.style.background = "#008f39 "
-        let smallTagstate = document.querySelector('#inputState1');
-        //smallTagstate.style.background = "green";
-        //smallTagstate.style.display = 'block';
-        smallTagstate.innerHTML = "<img src='./tilde.png' alt='' width='30px' height='30px'>";
-    }
+if (cardValidacion && 
+  cvcValidation &&
+  AmountValidacion &&
+  FirtsNameValidacion &&
+  LastnameValidacion &&
+  cityValidacion &&
+  InpuStateValidacion
+   ){
   
-
-});
-
-
-// cierre evento change state
-formCard.addEventListener("submit", function (evento) {
-    evento.preventDefault();
-
-    var validarCard = evento.target.Card !== '' && rgCard.test(evento.target.Card.value);
-    let validarCvc = evento.target.cvc !== '' && rgCvc.test(evento.target.cvc.value);
-    let validarAmount= evento.target.Amount !== '' && rgAmount.test(evento.target.Amount.value);
-    let validarFirtsName= evento.target.FirtsName !== '' && rgFirtsName.test(evento.target.FirtsName.value);
-    let validarLastsName= evento.target.LastName !== '' && rgFirtsName.test(evento.target.LastName.value);
-    let validarCity= evento.target.city !=='' && rgFirtsName.test(evento.target.city.value);
-    let validarState= evento.target.inputState.value !=='';
-    
-
-    if (validarCard == true && validarCvc == true && validarAmount==true && validarFirtsName==true && validarLastsName== true && validarCity== true && validarState==true)
-    {
-          
-        evento.target.submit();
-                alert("los datos se han enviado correctamente!")
-
-                
-    }
-
+ 
+setTimeout(()=>{
   
+  e.target.submit();
+},3000)
+MensajeBien("Enviado correctamente!",50)
+}else{
+  
+  MensajeError("Todos los campos son Obligatorios!",50)
 
-    else if (validarState== false) {
-       let Statestilo = document.querySelector('#inputState')
-       //Statestilo.style.background = "red"
-        let smallTag = document.querySelector('#inputState1');
-       //smallTag.style.background = "red";
-       smallTag.style.display = 'block';
-       smallTag.innerHTML = "Debes seleccionar un pais";
+}
 
-       
 
-       let msjConfirm= document.querySelector('#mensajeConfirm');
-       msjConfirm.style.display="block"
-       let msjTexto= document.querySelector('#msj');
-       msjTexto.innerHTML="Debes rellenar todos los campos"
-
-       for (let i =0;i<=inputs.length;i++){
-
-        if (inputs[i].value==""){
-            let smallmsj=document.querySelectorAll('small');
-            smallmsj[i].innerHTML="El campo esta vacio"
-            //smallmsj[i].style.background="red"
-
-        }
-         
-
-       }
-
-    
-      
-    }
-
-});
-
+}

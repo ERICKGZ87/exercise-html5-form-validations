@@ -2,4 +2,40 @@
     font-size: 40px;
     
     }
-    
+
+.correcto{
+
+border-color:green;
+border-radius: 10px;
+
+
+}
+
+.error{
+
+border-color:red;
+border-radius: 10px;
+
+}
+   
+.imgValidacion{
+
+   
+  
+}
+
+.msjError{
+    font-size: 10px;
+    color: red;
+}
+
+.msjBien{
+    font-size: 10px;
+    color:green;
+}
+
+.imgValidacion5{
+
+    margin-bottom: 15px;
+}
+
