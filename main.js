@@ -1,6 +1,8 @@
 // variables
 const formCard = document.querySelector("#Carddata");
+const formCardInpust = document.querySelectorAll("#Carddata input");
 
+console.log("🚀 ~ file: main.js ~ line 4 ~ formCardInpust", formCardInpust)
 // campos
 const card = document.querySelector("#Card");
 const Cvc = document.querySelector("#cvc");
@@ -25,156 +27,54 @@ let rgFirtsName = /^[a-zA-ZÀ-ÿ\s]{1,40}$/;
 ListenerEventos();
 
 function ListenerEventos() {
-  card.addEventListener("blur", ValidarCampos);
-  Cvc.addEventListener("blur", ValidarCampos);
-  Amount.addEventListener("blur", ValidarCampos);
-  FirtsName.addEventListener("blur", ValidarCampos);
-  LastName.addEventListener("blur", ValidarCampos);
-  city.addEventListener("blur", ValidarCampos);
+
+  formCardInpust.forEach((inpust)=>{
+   inpust.addEventListener("blur",ValidarCampos)
+ })
+ inputState.addEventListener("blur",ValidarCampos)
   formCard.addEventListener("submit", EnviarForm)
-  inputState.addEventListener("blur",ValidarCampos)
+ 
   document.addEventListener("DOMContentLoaded", IniciarAPP);
 }
 
-function IniciarAPP(e) {}
+function IniciarAPP(e) {
+
+  
+}
+
+function validarTodo(ev,InputName,IdInput,n1,reXg,messageVacio,messageBien,messageError){
+
+  if (InputName.value == "" && ev.target.id === IdInput) {
+    MensajeError(messageVacio, n1);
+    InputName.classList.remove("correcto");
+  }
+  if (InputName.value !== "" && ev.target.id === IdInput) {
+
+    if (reXg.test(InputName.value)) {
+      InputName.classList.remove("error");
+      InputName.classList.add("correcto");
+      MensajeBien(messageBien, n1);
+    } else {
+      InputName.classList.remove("correcto");
+      InputName.classList.add("error");
+      MensajeError(messageError, n1);
+    }
+  }
+
+}
+
 
 function ValidarCampos(e) {
 
-  // card
-  if (card.value == "" && e.target.id === "Card") {
-    MensajeError("El campo no puede estar vacio", 0);
-    card.classList.remove("correcto");
-  }
-  if (card.value !== "" && card.id === "Card") {
-    if (rgCard.test(card.value)) {
-      card.classList.remove("error");
-      card.classList.add("correcto");
-      MensajeBien("Bien", 0);
-    } else {
-      card.classList.remove("correcto");
-      card.classList.add("error");
-      MensajeError("La tarjeta es invalida", 0);
-    }
-  }
-  //cvc
-  if (Cvc.value == "" && e.target.id === "cvc") {
-    MensajeError("El campo no puede estar vacio", 1);
-    Cvc.classList.remove("correcto");
-  }
+validarTodo(e,card,"Card",0,rgCard,"todos los campos deben estar llenos","bien","La tarjeta es invalida")// card
+validarTodo(e,Cvc,"cvc",1,rgCvc,"todos los campos deben estar llenos","bien","debes agregar 4 numeros")// cvc
+validarTodo(e,Amount,"Amount",2,rgAmount,"Debes agregar un numero mayor a cero","bien","la cantidad no es valida")// amount
+validarTodo(e,FirtsName,"FirtsName",3,rgFirtsName,"Ingresa un nombre","bien","el nombre no es valido")// nombre
+validarTodo(e,LastName,"LastName",4,rgFirtsName,"Ingresa un apellido","bien","el apellido no es valido")// apellido
+validarTodo(e,city,"city",5,rgFirtsName,"Ingresa una ciudad","bien","la ciudad no es valido")// city
+validarTodo(e,inputState,"inputState",6,rgFirtsName,"Ingresa un pais","bien","el pais no es valido")// pais
 
-  if (Cvc.value !== "" && Cvc.id === "cvc") {
-    if (rgCvc.test(Cvc.value)) {
-      Cvc.classList.remove("error");
-      Cvc.classList.add("correcto");
-      MensajeBien("Bien", 1);
-    } else {
-      Cvc.classList.remove("correcto");
-      Cvc.classList.add("error");
-      MensajeError("Debes ingresar 4 numeros", 1);
-    }
-  }
-  //amount
-  if (Amount.value == "" && e.target.id === "Amount") {
-    // si esta vacio
 
-    MensajeError("El campo no puede estar vacio", 2);
-    Amount.classList.remove("correcto");
-  }
-
-  if (Amount.value !== "" && Amount.id === "Amount") {
-    // si es diferente a vacio
-
-    if (Amount.value > 0 && rgAmount.test(Amount.value)) {
-      Amount.classList.remove("error");
-      Amount.classList.add("correcto");
-      MensajeBien("Bien", 2);
-    } else {
-      Amount.classList.remove("correcto");
-      Amount.classList.add("error");
-      MensajeError("Debes ingresar una cantidad minima de 1000$", 2);
-    }
-  }
-  // FirtsName
-
-  if (FirtsName.value == "" && e.target.id === "FirtsName") {
-    // si esta vacio
-
-    MensajeError("El campo no puede estar vacio", 3);
-    Amount.classList.remove("correcto");
-  }
-
-  if (FirtsName.value !== "" && FirtsName.id === "FirtsName") {
-    // si es diferente a vacio
-
-    if (rgFirtsName.test(FirtsName.value)) {
-      FirtsName.classList.remove("error");
-      FirtsName.classList.add("correcto");
-      MensajeBien("Bien", 3);
-    } else {
-      FirtsName.classList.remove("correcto");
-      FirtsName.classList.add("error");
-      MensajeError("El nombre es invalido", 3);
-    }
-  }
-
-  // LastName
-
-  if (LastName.value == "" && e.target.id === "LastName") {
-    // si esta vacio
-
-    MensajeError("El campo no puede estar vacio", 4);
-    LastName.classList.remove("correcto");
-  }
-
-  if (LastName.value !== "" && LastName.id === "LastName") {
-    // si es diferente a vacio
-
-    if (rgFirtsName.test(LastName.value)) {
-      LastName.classList.remove("error");
-      LastName.classList.add("correcto");
-      MensajeBien("Bien", 4);
-    } else {
-      LastName.classList.remove("correcto");
-      LastName.classList.add("error");
-      MensajeError("El Apellido es invalido", 4);
-    }
-  }
-  // city
-  if (city.value == "" && e.target.id === "city") {
-    // si esta vacio
-    MensajeError("Debes Agregar una ciudad",5);
-    city.classList.remove("correcto");
-  }
-
-  if (city.value !== "" && city.id === "city") {
-    // si es diferente a vacio
-
-    if (rgFirtsName.test(city.value)) {
-      city.classList.remove("error");
-      city.classList.add("correcto");
-      MensajeBien("Bien", 5);
-    } else {
-      city.classList.remove("correcto");
-      city.classList.add("error");
-      MensajeError("El nombre es invalido",5);
-    }
-  }
-  //state
-  if (inputState.value == "" && e.target.id === "inputState") {
-    // si esta vacio
-    MensajeError("Debes seleccionar un pais",6);
-    inputState.classList.remove("correcto");
-  }
-
-  if (inputState.value !== "" && e.target.id === "inputState") {
-    // si es diferente a vacio
-
-    if (rgFirtsName.test(inputState.value)) {
-      inputState.classList.remove("error");
-      inputState.classList.add("correcto");
-      MensajeBien("Bien", 6);
-    } 
-  }
 }
 
 function MensajeBien(mensaje, n) {
